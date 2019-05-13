@@ -1,0 +1,17 @@
+---
+- hosts: all
+  vars_files:
+  - env_variables
+  tasks:
+     - name: Disable SWAP since kubernetes can't work with swap enabled
+       shell: |
+         swapoff -a
+       when: ansible_swaptotal_mb > 0
+  
+     - name: "Disable swapoff permanently"
+       replace:
+         path: /etc/fstab
+         regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+         replace: '#\1\2\3swap\4'
+         backup: yes
+

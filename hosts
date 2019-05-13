@@ -1,0 +1,6 @@
+[kubernetes-master-nodes]
+cephadmin.test.enlib ansible_host=172.16.4.138
+
+[kubernetes-worker-nodes]
+ceph1.test.enlib ansible_host=172.16.4.135
+ceph2.test.enlib ansible_host=172.16.4.136
